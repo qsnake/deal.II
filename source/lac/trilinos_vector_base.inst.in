@@ -1,0 +1,20 @@
+//---------------------------------------------------------------------------
+//    $Id: trilinos_vector_base.inst.in 23750 2011-05-29 23:39:28Z bangerth $
+//    Version: $Name$
+//
+//    Copyright (C) 2008 by the deal.II authors
+//
+//    This file is subject to QPL and may not be  distributed
+//    without copyright and license information. Please refer
+//    to the file deal.II/doc/license.html for the  text  and
+//    further information on this license.
+//
+//---------------------------------------------------------------------------
+
+
+for (SCALAR : REAL_SCALARS)
+  {
+    template
+      VectorBase &
+      VectorBase::operator = (const ::dealii::Vector<SCALAR> &v);
+  }

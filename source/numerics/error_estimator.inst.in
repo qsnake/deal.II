@@ -1,0 +1,200 @@
+//---------------------------------------------------------------------------
+//    $Id: error_estimator.inst.in 23579 2011-04-12 17:54:47Z heltai $
+//    Version: $Name$
+//
+//    Copyright (C) 2010, 2011 by the deal.II authors
+//
+//    This file is subject to QPL and may not be  distributed
+//    without copyright and license information. Please refer
+//    to the file deal.II/doc/license.html for the  text  and
+//    further information on this license.
+//
+//---------------------------------------------------------------------------
+
+for (deal_II_dimension : DIMENSIONS)
+{
+#if deal_II_dimension != 1
+template class KellyErrorEstimator<deal_II_dimension, deal_II_dimension>;
+#endif
+
+
+#if deal_II_dimension == 2
+template class KellyErrorEstimator<deal_II_dimension, deal_II_dimension+1>;
+#endif
+
+// instantiate the externally visible functions. define a list of functions
+// for vectors, where the vector/matrix can be replaced using a preprocessor
+// variable VectorType/MatrixType
+#define INSTANTIATE_1(InputVector,DH,Q) \
+template    \
+void    \
+KellyErrorEstimator<deal_II_dimension, deal_II_dimension>::    \
+estimate<InputVector,DH<deal_II_dimension> > (const Mapping<deal_II_dimension, deal_II_dimension>      &,    \
+          const DH<deal_II_dimension>   &,    \
+          const Q<deal_II_dimension-1> &,    \
+          const FunctionMap<deal_II_dimension>::type &,    \
+          const InputVector       &,    \
+          Vector<float>           &,    \
+          const std::vector<bool> &,    \
+          const Function<deal_II_dimension>     *,    \
+          const unsigned int       , \
+          const unsigned int       , \
+          const unsigned int);    \
+    \
+template    \
+void    \
+KellyErrorEstimator<deal_II_dimension, deal_II_dimension>::    \
+estimate<InputVector,DH<deal_II_dimension> > (const DH<deal_II_dimension>   &,    \
+          const Q<deal_II_dimension-1> &,    \
+          const FunctionMap<deal_II_dimension>::type &,    \
+          const InputVector       &,    \
+          Vector<float>           &,    \
+          const std::vector<bool> &,    \
+          const Function<deal_II_dimension>     *,    \
+          const unsigned int       , \
+          const unsigned int       , \
+          const unsigned int);    \
+        \
+template    \
+void    \
+KellyErrorEstimator<deal_II_dimension, deal_II_dimension>::    \
+estimate<InputVector,DH<deal_II_dimension> > (const Mapping<deal_II_dimension, deal_II_dimension>          &,    \
+          const DH<deal_II_dimension>       &,    \
+          const Q<deal_II_dimension-1>     &,    \
+          const FunctionMap<deal_II_dimension>::type &,    \
+          const std::vector<const InputVector *> &,    \
+          std::vector<Vector<float>*> &,    \
+          const std::vector<bool>     &,    \
+          const Function<deal_II_dimension>         *,    \
+          const unsigned int           , \
+          const unsigned int           , \
+          const unsigned int);    \
+    \
+template    \
+void    \
+KellyErrorEstimator<deal_II_dimension, deal_II_dimension>::    \
+estimate<InputVector,DH<deal_II_dimension> > (const DH<deal_II_dimension>       &,    \
+          const Q<deal_II_dimension-1>     &,    \
+          const FunctionMap<deal_II_dimension>::type &,    \
+          const std::vector<const InputVector *> &,    \
+          std::vector<Vector<float>*> &,    \
+          const std::vector<bool>     &,    \
+          const Function<deal_II_dimension>         *,    \
+          const unsigned int           , \
+          const unsigned int           , \
+	  const unsigned int);\
+ 
+#if deal_II_dimension == 2 || deal_II_dimension == 1
+
+#define INSTANTIATE_CODIM(InputVector,DH,Q)	\
+template    \
+void    \
+KellyErrorEstimator<deal_II_dimension, deal_II_dimension+1>::    \
+estimate<InputVector,DH<deal_II_dimension,deal_II_dimension+1> > (const Mapping<deal_II_dimension, deal_II_dimension+1>      &,    \
+          const DH<deal_II_dimension,deal_II_dimension+1>   &,    \
+          const Q<deal_II_dimension-1> &,    \
+          const FunctionMap<deal_II_dimension+1>::type &,    \
+          const InputVector       &,    \
+          Vector<float>           &,    \
+          const std::vector<bool> &,    \
+          const Function<deal_II_dimension+1>     *,    \
+          const unsigned int       , \
+          const unsigned int       , \
+          const unsigned int);    \
+    \
+template    \
+void    \
+KellyErrorEstimator<deal_II_dimension, deal_II_dimension+1>::    \
+estimate<InputVector,DH<deal_II_dimension,deal_II_dimension+1> > (const DH<deal_II_dimension,deal_II_dimension+1>   &,    \
+          const Q<deal_II_dimension-1> &,    \
+          const FunctionMap<deal_II_dimension+1>::type &,    \
+          const InputVector       &,    \
+          Vector<float>           &,    \
+          const std::vector<bool> &,    \
+          const Function<deal_II_dimension+1>     *,    \
+          const unsigned int       , \
+          const unsigned int       , \
+          const unsigned int);    \
+        \
+template    \
+void    \
+KellyErrorEstimator<deal_II_dimension, deal_II_dimension+1>::    \
+estimate<InputVector,DH<deal_II_dimension,deal_II_dimension+1> > (const Mapping<deal_II_dimension, deal_II_dimension+1>          &,    \
+          const DH<deal_II_dimension,deal_II_dimension+1>       &,    \
+          const Q<deal_II_dimension-1>     &,    \
+          const FunctionMap<deal_II_dimension+1>::type &,    \
+          const std::vector<const InputVector *> &,    \
+          std::vector<Vector<float>*> &,    \
+          const std::vector<bool>     &,    \
+          const Function<deal_II_dimension+1>         *,    \
+          const unsigned int           , \
+          const unsigned int           , \
+          const unsigned int);    \
+    \
+template    \
+void    \
+KellyErrorEstimator<deal_II_dimension, deal_II_dimension+1>::    \
+estimate<InputVector,DH<deal_II_dimension,deal_II_dimension+1> > (const DH<deal_II_dimension,deal_II_dimension+1>       &,    \
+          const Q<deal_II_dimension-1>     &,    \
+          const FunctionMap<deal_II_dimension+1>::type &,    \
+          const std::vector<const InputVector *> &,    \
+          std::vector<Vector<float>*> &,    \
+          const std::vector<bool>     &,    \
+          const Function<deal_II_dimension+1>         *,    \
+          const unsigned int           , \
+          const unsigned int           , \
+          const unsigned int);\
+
+#else
+#define INSTANTIATE_CODIM(InputVector,DH,Q)
+#endif
+ 
+
+#define INSTANTIATE(InputVector,DH) \
+     INSTANTIATE_1(InputVector,DH,Quadrature) \
+     INSTANTIATE_1(InputVector,DH,hp::QCollection) \
+     INSTANTIATE_CODIM(InputVector, DH, Quadrature) \
+     INSTANTIATE_CODIM(InputVector, DH, hp::QCollection)
+       
+
+
+INSTANTIATE(Vector<double>,DoFHandler)
+INSTANTIATE(Vector<float>,DoFHandler)
+INSTANTIATE(BlockVector<double>,DoFHandler)
+INSTANTIATE(BlockVector<float>,DoFHandler)
+
+INSTANTIATE(Vector<double>,hp::DoFHandler)
+INSTANTIATE(Vector<float>,hp::DoFHandler)
+INSTANTIATE(BlockVector<double>,hp::DoFHandler)
+INSTANTIATE(BlockVector<float>,hp::DoFHandler)
+
+#ifdef DEAL_II_USE_PETSC
+INSTANTIATE(PETScWrappers::Vector,DoFHandler)
+INSTANTIATE(PETScWrappers::BlockVector,DoFHandler)
+
+INSTANTIATE(PETScWrappers::Vector,hp::DoFHandler)
+INSTANTIATE(PETScWrappers::BlockVector,hp::DoFHandler)
+
+INSTANTIATE(PETScWrappers::MPI::Vector,DoFHandler)
+INSTANTIATE(PETScWrappers::MPI::BlockVector,DoFHandler)
+
+#endif
+
+#ifdef DEAL_II_USE_TRILINOS
+INSTANTIATE(TrilinosWrappers::Vector,DoFHandler)
+INSTANTIATE(TrilinosWrappers::BlockVector,DoFHandler)
+
+INSTANTIATE(TrilinosWrappers::Vector,hp::DoFHandler)
+INSTANTIATE(TrilinosWrappers::BlockVector,hp::DoFHandler)
+
+INSTANTIATE(TrilinosWrappers::MPI::Vector,DoFHandler)
+INSTANTIATE(TrilinosWrappers::MPI::BlockVector,DoFHandler)
+
+INSTANTIATE(TrilinosWrappers::MPI::Vector,hp::DoFHandler)
+INSTANTIATE(TrilinosWrappers::MPI::BlockVector,hp::DoFHandler)
+#endif
+
+#undef INSTANTIATE
+#undef INSTANTIATE_1
+#undef INSTANTIATE_CODIM
+}

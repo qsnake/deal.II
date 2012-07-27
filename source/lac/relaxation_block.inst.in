@@ -1,0 +1,49 @@
+//---------------------------------------------------------------------------
+//    $Id: relaxation_block.inst.in 23726 2011-05-20 01:58:20Z kanschat $
+//
+//    Copyright (C) 1999, 2000, 2001, 2002, 2003, 2005, 2006, 2007, 2009, 2010, 2011 by the deal.II authors
+//
+//    This file is subject to QPL and may not be  distributed
+//    without copyright and license information. Please refer
+//    to the file deal.II/doc/license.html for the  text  and
+//    further information on this license.
+//
+//---------------------------------------------------------------------------
+
+
+for (S1, S2 : REAL_SCALARS)
+  {
+    template class RelaxationBlock<SparseMatrix<S1>, S2>;
+    template class RelaxationBlockJacobi<SparseMatrix<S1>, S2>;
+    template class RelaxationBlockSOR<SparseMatrix<S1>, S2>;
+    template class RelaxationBlockSSOR<SparseMatrix<S1>, S2>;
+  }
+
+
+for (S1, S2, S3 : REAL_SCALARS)
+  {
+// ------------ RelaxationBlockJacobi -----------------
+    template
+      void RelaxationBlockJacobi<SparseMatrix<S1>, S2>::step<S3>
+      (Vector<S3> &, const Vector<S3> &) const;
+    template
+      void RelaxationBlockJacobi<SparseMatrix<S1>, S2>::Tstep<S3>
+      (Vector<S3> &, const Vector<S3> &) const;
+
+// ------------ RelaxationBlockSOR -----------------
+    template
+      void RelaxationBlockSOR<SparseMatrix<S1>, S2>::step<S3>
+      (Vector<S3> &, const Vector<S3> &) const;
+    template
+      void RelaxationBlockSOR<SparseMatrix<S1>, S2>::Tstep<S3>
+      (Vector<S3> &, const Vector<S3> &) const;
+
+// ------------ RelaxationBlockSSOR -----------------
+    template
+      void RelaxationBlockSSOR<SparseMatrix<S1>, S2>::step<S3>
+      (Vector<S3> &, const Vector<S3> &) const;
+    template
+      void RelaxationBlockSSOR<SparseMatrix<S1>, S2>::Tstep<S3>
+      (Vector<S3> &, const Vector<S3> &) const;
+  }
+

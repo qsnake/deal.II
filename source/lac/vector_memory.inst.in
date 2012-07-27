@@ -1,0 +1,19 @@
+//---------------------------------------------------------------------------
+//    $Id: vector_memory.inst.in 22523 2010-10-27 18:08:42Z bangerth $
+//    Version: $Name$
+//
+//    Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2010 by the deal.II authors
+//
+//    This file is subject to QPL and may not be  distributed
+//    without copyright and license information. Please refer
+//    to the file deal.II/doc/license.html for the  text  and
+//    further information on this license.
+//
+//---------------------------------------------------------------------------
+
+
+for (VECTOR : SERIAL_VECTORS)
+  {
+    template class VectorMemory<VECTOR>;
+    template class GrowingVectorMemory<VECTOR>;
+  }

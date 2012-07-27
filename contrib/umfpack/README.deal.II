@@ -1,0 +1,14 @@
+This directory is an almost identical copy of the UMFPACK 5.1 release,
+together with the AMD 2.2 and UFconfig 3.0 packages. The only things I have
+changed are the Makefiles: they build shared libraries instead of static ones
+if deal.II is so configured, and they put the object files somewhere
+else. This also allowed us to get rid of the AMD/Make and UMFPACK/Make
+subdirectories, since they did by hand what we do more elegantly using
+autoconf and friends.  Finally, I removed the UMFPACK/Demo directory, since it
+is rather big. I assume that people using UMFPACK from inside deal.II are not
+interested in this, but they can of course download the full UMFPACK
+distribution if they want these files.
+
+UMFPACK is copyrighted by others than the deal.II authors, but
+included by permission. See the AMD/Doc/License and
+UMFPACK/Doc/License files for licensing information.

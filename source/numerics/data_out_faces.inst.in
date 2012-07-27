@@ -1,0 +1,21 @@
+//---------------------------------------------------------------------------
+//    $Id: data_out_faces.inst.in 22749 2010-11-16 13:50:47Z kronbichler $
+//    Version: $Name$
+//
+//    Copyright (C) 2010 by the deal.II authors
+//
+//    This file is subject to QPL and may not be  distributed
+//    without copyright and license information. Please refer
+//    to the file deal.II/doc/license.html for the  text  and
+//    further information on this license.
+//
+//---------------------------------------------------------------------------
+
+for (deal_II_dimension : DIMENSIONS)
+{
+  // don't instantiate anything for the 1d
+#if deal_II_dimension >=2
+  template class DataOutFaces<deal_II_dimension, DoFHandler<deal_II_dimension> >;
+  template class DataOutFaces<deal_II_dimension, hp::DoFHandler<deal_II_dimension> >;
+#endif
+}

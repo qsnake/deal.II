@@ -1,0 +1,87 @@
+//---------------------------------------------------------------------------
+//    $Id: grid_generator.inst.in 23834 2011-06-17 19:55:07Z bangerth $
+//    Version: $Name$
+//
+//    Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010 by the deal.II authors
+//
+//    This file is subject to QPL and may not be  distributed
+//    without copyright and license information. Please refer
+//    to the file deal.II/doc/license.html for the  text  and
+//    further information on this license.
+//
+//---------------------------------------------------------------------------
+
+
+for (deal_II_dimension : DIMENSIONS)
+{
+  template void
+    GridGenerator::hyper_rectangle<deal_II_dimension> (
+      Triangulation<deal_II_dimension> &,
+      const Point<deal_II_dimension>&, const Point<deal_II_dimension>&,
+      const bool);
+
+  template void
+    GridGenerator::colorize_hyper_rectangle<deal_II_dimension> (
+      Triangulation<deal_II_dimension> &);
+
+  template void
+    GridGenerator::hyper_cube<deal_II_dimension> (
+      Triangulation<deal_II_dimension> &, const double, const double);
+
+  template void
+    GridGenerator::subdivided_hyper_cube<deal_II_dimension> (
+      Triangulation<deal_II_dimension> &,
+      const unsigned int, const double, const double);
+
+  template void
+    GridGenerator::subdivided_hyper_rectangle<deal_II_dimension>
+    (Triangulation<deal_II_dimension> &,
+     const std::vector<unsigned int>&,
+     const Point<deal_II_dimension>&,
+     const Point<deal_II_dimension>&,
+     bool);
+
+  template
+    void
+    GridGenerator::subdivided_hyper_rectangle(
+      Triangulation<deal_II_dimension>              &,
+      const std::vector<std::vector<double> > &,
+      const Point<deal_II_dimension>                &,
+      const Point<deal_II_dimension>                &,
+      const bool                       );
+
+
+    template
+    void
+    GridGenerator::merge_triangulations (const Triangulation<deal_II_dimension,deal_II_dimension> &triangulation_1,
+		      const Triangulation<deal_II_dimension,deal_II_dimension> &triangulation_2,
+		      Triangulation<deal_II_dimension,deal_II_dimension>       &result);
+
+#if deal_II_dimension < 3
+    template
+    void
+    GridGenerator::merge_triangulations (const Triangulation<deal_II_dimension,deal_II_dimension+1> &triangulation_1,
+		      const Triangulation<deal_II_dimension,deal_II_dimension+1> &triangulation_2,
+		      Triangulation<deal_II_dimension,deal_II_dimension+1>       &result);
+#endif
+    
+#if deal_II_dimension > 1
+  template void
+    GridGenerator::
+    laplace_transformation<deal_II_dimension> (Triangulation<deal_II_dimension> &,
+					       const std::map<unsigned int,Point<deal_II_dimension> > &);
+#endif
+
+#if deal_II_dimension != 3
+  template void
+    GridGenerator::hyper_cube<deal_II_dimension, deal_II_dimension+1> (
+      Triangulation<deal_II_dimension,deal_II_dimension+1> &, const double, const double);
+  template void
+    GridGenerator::hyper_rectangle<deal_II_dimension,deal_II_dimension+1> (
+      Triangulation<deal_II_dimension,deal_II_dimension+1> &,
+      const Point<deal_II_dimension+1>&, const Point<deal_II_dimension+1>&,
+      const bool);
+
+#endif
+ }
+

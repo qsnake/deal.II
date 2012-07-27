@@ -1,0 +1,43 @@
+C     Return the value of NRLNEC
+
+      SUBROUTINE ma27x1(X)
+      INTEGER X
+      COMMON /MA27ED/OPS,IERROR,NRLTOT,NIRTOT,NRLNEC,NIRNEC,NRLADU,
+     +       NIRADU,NRLBDU,NIRBDU,NCMPA,NCMPBR,NCMPBI,NTWO,NEIG
+      DOUBLE PRECISION OPS
+      INTEGER IERROR,NRLTOT,NIRTOT,NRLNEC,NIRNEC,NRLADU,NIRADU,NRLBDU,
+     +       NIRBDU,NCMPA,NCMPBR,NCMPBI,NTWO,NEIG
+
+      X=NRLNEC
+      RETURN
+      END
+
+
+
+
+C     Return the value of NIRNEC
+      SUBROUTINE ma27x2(X)
+      INTEGER X
+      COMMON /MA27ED/OPS,IERROR,NRLTOT,NIRTOT,NRLNEC,NIRNEC,NRLADU,
+     +       NIRADU,NRLBDU,NIRBDU,NCMPA,NCMPBR,NCMPBI,NTWO,NEIG
+      DOUBLE PRECISION OPS
+      INTEGER IERROR,NRLTOT,NIRTOT,NRLNEC,NIRNEC,NRLADU,NIRADU,NRLBDU,
+     +       NIRBDU,NCMPA,NCMPBR,NCMPBI,NTWO,NEIG
+
+      X=NIRNEC
+      RETURN
+      END
+
+
+C     Set value of error stream. If zero, then no error output
+C     is generated, which is what we usually want since we catch
+C     errors internally and treat them
+      SUBROUTINE ma27x3(X)
+      INTEGER X
+      COMMON /MA27DD/U,LP,MP,LDIAG
+      DOUBLE PRECISION U
+      INTEGER LP,MP,LDIAG
+
+      LP=X
+      RETURN
+      END

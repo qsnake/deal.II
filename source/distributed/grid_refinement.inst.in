@@ -1,0 +1,44 @@
+//---------------------------------------------------------------------------
+//    $Id: grid_refinement.inst.in 22584 2010-11-02 03:12:49Z bangerth $
+//    Version: $Name$
+//
+//    Copyright (C) 2010 by the deal.II authors
+//
+//    This file is subject to QPL and may not be  distributed
+//    without copyright and license information. Please refer
+//    to the file deal.II/doc/license.html for the  text  and
+//    further information on this license.
+//
+//---------------------------------------------------------------------------
+
+
+
+for (S : REAL_SCALARS; deal_II_dimension : DIMENSIONS)
+{
+#if deal_II_dimension != 1
+namespace parallel
+\{
+  namespace distributed
+  \{
+    namespace GridRefinement
+    \{
+      template
+      void
+      refine_and_coarsen_fixed_number<deal_II_dimension,dealii::Vector<S>,deal_II_dimension>
+      (parallel::distributed::Triangulation<deal_II_dimension> &,
+       const dealii::Vector<S> &,
+       const double,
+       const double);
+
+      template
+      void
+      refine_and_coarsen_fixed_fraction<deal_II_dimension,dealii::Vector<S>,deal_II_dimension>
+      (parallel::distributed::Triangulation<deal_II_dimension> &,
+       const dealii::Vector<S> &,
+       const double,
+       const double);
+    \}
+  \}
+\}
+#endif
+}

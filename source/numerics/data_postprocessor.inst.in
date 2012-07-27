@@ -1,0 +1,17 @@
+//---------------------------------------------------------------------------
+//    $Id: data_postprocessor.inst.in 22749 2010-11-16 13:50:47Z kronbichler $
+//    Version: $Name$
+//
+//    Copyright (C) 2010 by the deal.II authors
+//
+//    This file is subject to QPL and may not be  distributed
+//    without copyright and license information. Please refer
+//    to the file deal.II/doc/license.html for the  text  and
+//    further information on this license.
+//
+//---------------------------------------------------------------------------
+
+for (deal_II_dimension : DIMENSIONS)
+{
+  template class DataPostprocessor<deal_II_dimension>;
+}
