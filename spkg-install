@@ -1,0 +1,26 @@
+#! /bin/sh
+
+if [ "$SPKG_LOCAL" = "" ]; then
+   echo "SPKG_LOCAL undefined ... exiting";
+   echo "Maybe run 'qsnake --shell'?"
+   exit 1
+fi
+
+
+set -e
+
+# Create deleted directories
+mkdir -p lib/bin
+mkdir -p lib/contrib/functionparser
+mkdir -p lib/contrib/hsl
+mkdir -p lib/contrib/tbb
+mkdir -p lib/contrib/umpfpack
+mkdir -p lib/debug
+mkdir -p lib/optimized
+
+
+# Deal.II does not support installing into $SPKG_LOCAL, see:
+# http://www.dealii.org/~archiver/dealii/msg05737.html
+# So we just build the library in place.
+./configure
+make all
